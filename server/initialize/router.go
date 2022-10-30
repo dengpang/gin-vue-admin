@@ -1,6 +1,7 @@
 package initialize
 
 import (
+	"github.com/flipped-aurora/gin-vue-admin/server/plugin/es"
 	"net/http"
 
 	_ "github.com/flipped-aurora/gin-vue-admin/server/docs"
@@ -77,5 +78,13 @@ func Routers() *gin.Engine {
 	InstallPlugin(Router) // 安装插件
 
 	global.GVA_LOG.Info("router register success")
+
+	//1、本插件可以采用gva的配置文件 也可以直接写死内容作为配置 建议为gva添加配置文件结构 然后将配置传入
+	PluginInit(PrivateGroup, es.CreateEsPlug(
+		global.GVA_CONFIG.Elasticsearch.Host,
+		global.GVA_CONFIG.Elasticsearch.Port,
+		global.GVA_CONFIG.Elasticsearch.User,
+		global.GVA_CONFIG.Elasticsearch.Pass,
+	))
 	return Router
 }

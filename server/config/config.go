@@ -1,5 +1,7 @@
 package config
 
+import es_config "github.com/flipped-aurora/gin-vue-admin/server/plugin/es/config"
+
 type Server struct {
 	JWT     JWT     `mapstructure:"jwt" json:"jwt" yaml:"jwt"`
 	Zap     Zap     `mapstructure:"zap" json:"zap" yaml:"zap"`
@@ -27,4 +29,7 @@ type Server struct {
 
 	// 跨域配置
 	Cors CORS `mapstructure:"cors" json:"cors" yaml:"cors"`
+
+	//es
+	Elasticsearch es_config.Elasticsearch `mapstructure:"elasticsearch" json:"elasticsearch" yaml:"elasticsearch"`
 }

@@ -6,6 +6,7 @@ import (
 
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
 	"github.com/flipped-aurora/gin-vue-admin/server/initialize"
+	es_initialize "github.com/flipped-aurora/gin-vue-admin/server/plugin/es/initialize"
 	"github.com/flipped-aurora/gin-vue-admin/server/service/system"
 	"go.uber.org/zap"
 )
@@ -34,6 +35,10 @@ func RunWindowsServer() {
 	// In order to ensure that the text order output can be deleted
 	time.Sleep(10 * time.Microsecond)
 	global.GVA_LOG.Info("server run success on ", zap.String("address", address))
+
+	// 保证文本顺序输出
+	// In order to ensure that the text order output can be deleted
+	es_initialize.LoadService() // Elasticsearch连接服务地址
 
 	fmt.Printf(`
 	欢迎使用 gin-vue-admin
